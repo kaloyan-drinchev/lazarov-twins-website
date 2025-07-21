@@ -254,8 +254,8 @@ nav.navbar {
     border-radius: 0;
     margin: 0 auto;
     display: block;
-    max-width: 160px;
-    max-height: 48px;
+    max-width: 320px;
+    max-height: 92px;
   }
   .navbar__links--center {
     display: none;
