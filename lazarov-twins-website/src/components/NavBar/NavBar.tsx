@@ -18,18 +18,21 @@ const navLinks = [
   { to: '/contact', label: 'Contact' },
 ];
 
-const getDelay = (i: number) => `${0.1 + i * 0.08}s`;
-
 const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
 
   const handleToggle = () => setMenuOpen((open) => !open);
   const handleClose = () => setMenuOpen(false);
+  const handleSearchOpen = () => setSearchOpen(true);
+  const handleSearchClose = () => setSearchOpen(false);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > MOBILE_BREAKPOINT) {
         setMenuOpen(false);
+        setSearchOpen(false);
       }
     };
     window.addEventListener('resize', handleResize);
@@ -67,32 +70,61 @@ const NavBar: React.FC = () => {
               </button>
             </li>
           )}
-          {navLinks.map(({ to, label }, i) => (
-            <li
-              className="navbar__item"
-              key={to}
-              style={menuOpen ? { animationDelay: getDelay(i) } : {}}
-            >
+          {navLinks.map(({ to, label }) => (
+            <li className="navbar__item" key={to}>
               <NavLink to={to} end={to === '/'} onClick={handleClose}>
                 {label}
               </NavLink>
             </li>
           ))}
           {menuOpen && (
-            <li
-              className="navbar__logo--mobile"
-              style={{ animationDelay: getDelay(navLinks.length) }}
-            >
+            <li className="navbar__logo--mobile">
               <img src={logo} alt="L-Twins Fitness Brand Logo" />
             </li>
           )}
         </ul>
         <div className="navbar__icons">
-          <img src={searchIcon} alt="Search" className="navbar__icon" />
+          <img
+            src={searchIcon}
+            alt="Search"
+            className="navbar__icon"
+            style={{ cursor: 'pointer' }}
+            onClick={handleSearchOpen}
+          />
           <img src={bagIcon} alt="Bag" className="navbar__icon" />
         </div>
+        {searchOpen && (
+          <div className="navbar__search-menu open">
+            <div className="navbar__search-header">
+              <button
+                className="navbar__search-close"
+                onClick={handleSearchClose}
+                aria-label="Close search"
+              >
+                &times;
+              </button>
+            </div>
+            <div className="navbar__search-content">
+              <img
+                src={searchIcon}
+                alt="Search"
+                className="navbar__search-icon"
+              />
+              <input
+                className="navbar__search-input"
+                type="text"
+                placeholder="Search..."
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+              />
+            </div>
+          </div>
+        )}
         {menuOpen && (
           <div className="navbar__overlay" onClick={handleClose}></div>
+        )}
+        {searchOpen && (
+          <div className="navbar__overlay" onClick={handleSearchClose}></div>
         )}
       </nav>
     </header>
