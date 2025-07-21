@@ -45,9 +45,6 @@ nav.navbar {
   margin: 0;
   padding: 0;
   order: 1;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-100%) scale(0.98);
 }
 
 .navbar__links--center.navbar__links--open {
@@ -261,8 +258,6 @@ nav.navbar {
     max-height: 48px;
   }
   .navbar__links--center {
-    justify-content: flex-start;
-    order: 2;
     display: none;
     flex-direction: column;
     align-items: flex-start;
@@ -278,17 +273,22 @@ nav.navbar {
     padding: 2rem 1.5rem 1.5rem 1.5rem;
     gap: 1.5rem;
     z-index: 20;
-    transform: translateX(-100%) scale(0.98);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1),
-      opacity 0.35s cubic-bezier(0.77, 0, 0.175, 1);
   }
   .navbar__links--center.navbar__links--open {
     display: flex;
-    transform: translateX(0) scale(1);
-    opacity: 1;
+    animation: hamburger-menu-slide-in 0.5s cubic-bezier(0.77, 0, 0.175, 1)
+      forwards;
     pointer-events: auto;
+  }
+  @keyframes hamburger-menu-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-100%) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
   }
   .navbar__item,
   .navbar__logo--mobile {
