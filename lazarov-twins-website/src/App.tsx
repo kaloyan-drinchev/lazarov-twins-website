@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Suspense, lazy, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
 
-function App() {
-  const [count, setCount] = useState(0)
+const Home = lazy(() => import('./components/Home/Home'));
+const About = lazy(() => import('./components/About/About'));
+const TrainingPrograms = lazy(
+  () => import('./components/TrainingPrograms/TrainingPrograms')
+);
+const NutritionPlan = lazy(
+  () => import('./components/NutritionPlan/NutritionPlan')
+);
+const MuscleLadder = lazy(
+  () => import('./components/MuscleLadder/MuscleLadder')
+);
+const Sponsors = lazy(() => import('./components/Sponsors/Sponsors'));
+const Blog = lazy(() => import('./components/Blog/Blog'));
+const Contact = lazy(() => import('./components/Contact/Contact'));
+const NotFound = () => <h2>Page not found</h2>;
+
+const TITLES: Record<string, string> = {
+  '/': 'L-Twins',
+  '/about': 'L-Twins | About',
+  '/training-programs': 'L-Twins | Training Programs',
+  '/nutrition-plan': 'L-Twins | Nutrition Plan',
+  '/muscle-ladder': 'L-Twins | The Muscle Ladder',
+  '/sponsors': 'L-Twins | Sponsors',
+  '/blog': 'L-Twins | Blog',
+  '/contact': 'L-Twins | Contact',
+};
+
+export default function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    document.title = TITLES[location.pathname] || 'L-Twins | Not Found';
+  }, [location.pathname]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Suspense fallback={<div>Loading…</div>}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="training-programs" element={<TrainingPrograms />} />
+          <Route path="nutrition-plan" element={<NutritionPlan />} />
+          <Route path="muscle-ladder" element={<MuscleLadder />} />
+          <Route path="sponsors" element={<Sponsors />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  );
 }
-
-export default App

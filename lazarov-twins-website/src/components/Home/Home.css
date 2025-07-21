@@ -1,0 +1,8 @@
+.home-page__video {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
