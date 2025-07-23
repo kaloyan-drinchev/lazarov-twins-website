@@ -12,6 +12,7 @@
  * @property {number} salesCount
  */
 /** @type {TrainingProgram[]} */
+
 const trainingPrograms = [
   {
     "id": 1,

@@ -269,8 +269,9 @@
   height: 345px;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
   opacity: 0;
   transform: translateY(30px);
   animation: card-fade-in 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
@@ -312,24 +313,90 @@
   transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
 }
 
-.training-program-title {
+.training-program-card-content {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  padding: 1rem 0.5rem 1.2rem;
+  padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  background: linear-gradient(0deg, rgba(0,0,0,0.7) 70%, transparent 100%);
+}
+
+.training-program-title,
+.training-program-rating,
+.training-program-category,
+.training-program-price {
+  position: static;
+  z-index: auto;
+  width: 100%;
+}
+
+.training-program-title {
   text-align: center;
   color: #fff !important;
   font-size: 1.3rem;
   font-weight: bold;
-  background: linear-gradient(0deg, rgba(0,0,0,0.7) 70%, transparent 100%);
-  margin: 0;
+  margin: 0 0 0.3rem 0;
   text-decoration: none !important;
+  background: none;
+  padding: 0;
   transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
 }
 
 .training-program-card:hover .training-program-title,
 .training-program-card:hover .training-program-image {
   transform: scale(1.08);
+}
+
+.training-program-info-below {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 18px;
+}
+
+.training-program-rating {
+  margin-top: 0;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.star {
+  color: #ddd;
+  font-size: 1.3rem;
+  margin: 0 1.5px;
+}
+
+.star.filled {
+  color: #ffb400;
+}
+
+.star.half {
+  background: linear-gradient(90deg, #ffb400 50%, #ddd 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.training-program-category {
+  text-align: center;
+  font-size: 1rem;
+  color: #444;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.training-program-price {
+  margin-top: 0;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
 }
 
 /*-----  End of Program Cards Grid  ------*/
@@ -401,7 +468,6 @@
     gap: 0.4rem !important;
   }
   .training-program-card-link {
-    display: flex !important;
     flex: 0 0 calc(50% - 0.2rem) !important;
     box-sizing: border-box !important;
   }
