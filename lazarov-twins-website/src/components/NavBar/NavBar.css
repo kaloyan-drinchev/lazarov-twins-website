@@ -131,12 +131,13 @@ nav.navbar {
   width: 70vw;
   max-width: 320px;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.08);
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  padding-left: 5px;
   gap: 1.5rem;
   z-index: 30;
   opacity: 0;
   pointer-events: none;
   transform: translateX(100%) scale(0.98);
+  overflow-y: auto;
 }
 
 .navbar__search-menu.open {
@@ -165,6 +166,10 @@ nav.navbar {
 }
 
 .navbar__search-close {
+  display: block;
+  position: absolute;
+  top: 1rem;
+  right: 0.5rem;
   background: none;
   border: none;
   font-size: 2.5rem;
@@ -336,7 +341,7 @@ nav.navbar {
     display: block;
     position: absolute;
     top: 1rem;
-    right: 1.2rem;
+    right: 0.5rem;
     background: none;
     border: none;
     font-size: 2.5rem;
@@ -391,4 +396,44 @@ a.active {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.navbar__search-result-item {
+  display: flex;
+  align-items: center;
+  padding-bottom: 12px
+}
+
+.navbar__search-result-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.navbar__search-result-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navbar__search-result-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.navbar__search-result-price {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.navbar__search-result-image {
+  width: 120px;
+  height: 240px;
+  object-fit: cover;
+  margin-right: 18px;
+  background: #f3f3f3;
 }

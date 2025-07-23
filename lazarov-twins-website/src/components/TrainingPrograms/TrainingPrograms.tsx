@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./TrainingPrograms.css";
-import searchIcon from "../../assets/icons8-search.gif";
+import searchIcon from "../../assets/search-interface-symbol.png";
 import filterIcon from "../../assets/icons8-filter-50.png";
 import arrowDownIcon from "../../assets/icons8-chevron-down-24.png";
 import { Link } from "react-router-dom";
