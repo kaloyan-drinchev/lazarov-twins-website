@@ -76,6 +76,45 @@ nav.navbar::after {
   z-index: 20;
 }
 
+.training-programs-header {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.header-left,
+.styled-header-left {
+  flex: 0 0 340px;
+  max-width: 340px;
+  min-width: 220px;
+  width: auto;
+}
+
+.header-featured-image-center {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1100px) {
+  .training-programs-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .header-left,
+  .styled-header-left {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+}
+
 @media (max-width: 1200px) {
   body > * {
     padding-left: 40px;
@@ -103,5 +142,11 @@ nav.navbar::after {
   nav.navbar::after {
     margin-left: calc(-1 * 10px);
     margin-right: calc(-1 * 10px);
+  }
+}
+
+@media (max-width: 800px) {
+  nav.navbar.menu-open::after {
+    display: none !important;
   }
 }

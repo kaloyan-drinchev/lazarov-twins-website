@@ -23,6 +23,17 @@ const NavBar: React.FC = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
+  useEffect(() => {
+    const nav = document.querySelector('nav.navbar');
+    if (nav) {
+      if (menuOpen) {
+        nav.classList.add('menu-open');
+      } else {
+        nav.classList.remove('menu-open');
+      }
+    }
+  }, [menuOpen]);
+
   const handleToggle = () => setMenuOpen((open) => !open);
   const handleClose = () => setMenuOpen(false);
   const handleSearchOpen = () => setSearchOpen(true);
