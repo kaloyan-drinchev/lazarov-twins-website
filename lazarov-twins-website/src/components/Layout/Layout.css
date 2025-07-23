@@ -19,8 +19,6 @@ main {
   justify-content: center;
   min-height: 170px;
   /* For debugging: */
-  border: 2px solid red;
-  background: #ffeedd;
 }
 .header-featured-image {
   width: 100%;

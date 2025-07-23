@@ -169,9 +169,8 @@ const TrainingPrograms: React.FC = () => {
       {!isNavOpen && (
         <div className="mobile-bar styled-bar">
           <button className="mobile-bar-btn styled-bar-btn" onClick={() => setShowMobileFilter(true)}>
-            <img src={filterIcon} alt="Filter" className="bar-btn-icon" />
             Filters
-            <img src={arrowDownIcon} alt="Open" className="bar-btn-arrow" />
+            <img src={filterIcon} alt="Filter" className="bar-btn-icon" />
           </button>
           <button className="mobile-bar-btn styled-bar-btn" onClick={() => setShowMobileSort(true)}>
             Sort by
