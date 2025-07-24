@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
+import SingleProgramView from './components/SingleProgramView/SingleProgramView';
 
 const Home = lazy(() => import('./components/Home/Home'));
 const About = lazy(() => import('./components/About/About'));
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="sponsors" element={<Sponsors />} />
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="singleProgramView/:id" element={<SingleProgramView />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -6,9 +6,9 @@
 }
 
 .home-page__video {
+  padding: 10px 10px;
   width: 100%;
   max-width: 900px;
-  border-radius: 12px;
   margin: 0 auto;
   display: block;
   pointer-events: none;

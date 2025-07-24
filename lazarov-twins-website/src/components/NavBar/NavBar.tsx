@@ -2,9 +2,25 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import burgerIcon from '../../assets/burger-menu-svgrepo-com.svg';
 import logo from "../../assets/Dynamic 'L-Twins' Fitness Logo (1).png";
-import searchIcon from '../../assets/icons8-search.gif';
+import searchIcon from '../../assets/search-interface-symbol.png';
 import bagIcon from '../../assets/icons8-paper-bag-50.png';
 import './NavBar.css';
+import trainingProgramsData from "../../data/trainingProgram.js";
+
+interface TrainingProgram {
+  id: number;
+  title: string;
+  body: string;
+  image: string;
+  experienceLevel: string;
+  goal: string;
+  price: number;
+  rating: number;
+  new: boolean;
+  salesCount: number;
+}
+
+const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -22,6 +38,23 @@ const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  
+  useEffect(() => {
+    const nav = document.querySelector('nav.navbar');
+    if (nav) {
+      if (menuOpen) {
+        nav.classList.add('menu-open');
+      } else {
+        nav.classList.remove('menu-open');
+      }
+    }
+  }, [menuOpen]);
+
+  const filteredPrograms = searchValue.trim()
+  ? trainingPrograms.filter((program: any) =>
+      program.title.toLowerCase().includes(searchValue.toLowerCase())
+    )
+  : [];
 
   const handleToggle = () => setMenuOpen((open) => !open);
   const handleClose = () => setMenuOpen(false);
@@ -97,29 +130,48 @@ const NavBar: React.FC = () => {
           <div className="navbar__search-menu open">
             <div className="navbar__search-header">
               <button
-                className="navbar__search-close"
-                onClick={handleSearchClose}
-                aria-label="Close search"
+               className="navbar__search-close"
+               onClick={handleSearchClose}
+               aria-label="Close search"
               >
                 &times;
               </button>
             </div>
-            <div className="navbar__search-content">
-              <img
-                src={searchIcon}
-                alt="Search"
-                className="navbar__search-icon"
-              />
-              <input
-                className="navbar__search-input"
-                type="text"
-                placeholder="Search..."
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-              />
-            </div>
-          </div>
+      <div className="navbar__search-content">
+      <img
+        src={searchIcon}
+        alt="Search"
+        className="navbar__search-icon"
+      />
+      <input
+        className="navbar__search-input"
+        type="text"
+        placeholder="Search..."
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
+    </div>
+    {searchValue && (
+      <ul className="navbar__search-results">
+        {filteredPrograms.length > 0 ? (
+          filteredPrograms.map((program: any) => (
+            <li key={program.id} className="navbar__search-result-item">
+              <NavLink to={`/singleProgramView/${program.id}`} onClick={handleSearchClose} className="navbar__search-result-link">
+                <img src={program.image} alt={program.title} className="navbar__search-result-image" />
+                <div className="navbar__search-result-info">
+                  <span className="navbar__search-result-title">{program.title}</span>
+                  <span className="navbar__search-result-price">${program.price.toFixed(2)}</span>
+                </div>
+              </NavLink>
+            </li>
+          ))
+        ) : (
+          <li>No results found.</li>
         )}
+      </ul>
+    )}
+  </div>
+)}
         {menuOpen && (
           <div className="navbar__overlay" onClick={handleClose}></div>
         )}

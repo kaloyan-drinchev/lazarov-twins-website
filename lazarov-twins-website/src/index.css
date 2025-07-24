@@ -47,3 +47,107 @@ button {
   font: inherit;
   cursor: pointer;
 }
+
+body > * {
+  box-sizing: border-box;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+nav.navbar {
+  box-sizing: border-box;
+  padding-left: 80px;
+  padding-right: 80px;
+  position: relative;
+}
+
+nav.navbar::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: #e5e5e5;
+  width: 100vw;
+  margin-left: calc(-1 * var(--navbar-padding, 80px));
+  margin-right: calc(-1 * var(--navbar-padding, 80px));
+  z-index: 20;
+}
+
+.training-programs-header {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.header-left,
+.styled-header-left {
+  flex: 0 0 340px;
+  max-width: 340px;
+  min-width: 220px;
+  width: auto;
+}
+
+.header-featured-image-center {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1100px) {
+  .training-programs-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .header-left,
+  .styled-header-left {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  body > * {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  nav.navbar {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  nav.navbar::after {
+    margin-left: calc(-1 * 40px);
+    margin-right: calc(-1 * 40px);
+  }
+}
+
+@media (max-width: 700px) {
+  body > * {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 76px;
+  }
+  nav.navbar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  nav.navbar::after {
+    margin-left: calc(-1 * 10px);
+    margin-right: calc(-1 * 10px);
+  }
+}
+
+@media (max-width: 800px) {
+  nav.navbar.menu-open::after {
+    display: none !important;
+  }
+}
