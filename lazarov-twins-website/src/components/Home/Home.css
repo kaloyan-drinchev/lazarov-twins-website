@@ -92,16 +92,18 @@
 
 .home-best-selling-grid {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 2rem;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 3rem;
   width: 100%;
+  overflow-x: auto;
 }
 
 .home-program-card {
   flex: 0 0 auto;
-  width: calc(20% - 1.6rem);
+  width: 287px;
+  max-width: 287px;
   opacity: 0;
   transform: translateX(-50px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;

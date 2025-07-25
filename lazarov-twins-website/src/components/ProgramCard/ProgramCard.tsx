@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ProgramCard.css";
-import type { TrainingProgram, ProgramCardProps } from "../../types";
+import type { ProgramCardProps } from "../../types";
 
 const ProgramCard: React.FC<ProgramCardProps> = ({ program, className = "" }) => {
   return (
@@ -17,7 +17,7 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ program, className = "" }) =>
         />
       </div>
       <div className="program-card-info-below">
-        <h3 className="program-card-title">{program.title}</h3>
+        <h3 className="program-card-title" style={{ fontFamily: 'Arial Narrow, Arial, sans-serif' }}>{program.title}</h3>
         <div className="program-card-rating">
           {Array.from({ length: 5 }).map((_, i) => {
             const fullStars = Math.floor(program.rating);
