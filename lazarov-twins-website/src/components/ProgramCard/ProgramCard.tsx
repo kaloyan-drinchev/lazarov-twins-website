@@ -1,24 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ProgramCard.css";
-
-interface TrainingProgram {
-  id: number;
-  title: string;
-  body: string;
-  image: string;
-  experienceLevel: string;
-  goal: string;
-  price: number;
-  rating: number;
-  new: boolean;
-  salesCount: number;
-}
-
-interface ProgramCardProps {
-  program: TrainingProgram;
-  className?: string;
-}
+import type { TrainingProgram, ProgramCardProps } from "../../types";
 
 const ProgramCard: React.FC<ProgramCardProps> = ({ program, className = "" }) => {
   return (

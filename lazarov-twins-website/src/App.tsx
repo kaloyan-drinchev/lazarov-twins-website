@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import SingleProgramView from './components/SingleProgramView/SingleProgramView';
 
 const Home = lazy(() => import('./components/Home/Home'));
@@ -39,6 +40,7 @@ export default function App() {
 
   return (
     <Suspense fallback={<div>Loading…</div>}>
+      <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />

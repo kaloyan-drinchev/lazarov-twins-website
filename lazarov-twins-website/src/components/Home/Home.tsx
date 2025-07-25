@@ -2,21 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import ProgramCard from '../ProgramCard/ProgramCard';
+import type { TrainingProgram } from '../../types';
 // @ts-ignore
 import trainingProgramsData from '../../data/trainingProgram';
-
-interface TrainingProgram {
-  id: number;
-  title: string;
-  body: string;
-  image: string;
-  experienceLevel: string;
-  goal: string;
-  price: number;
-  rating: number;
-  new: boolean;
-  salesCount: number;
-}
 
 const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
 

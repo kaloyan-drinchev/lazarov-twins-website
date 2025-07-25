@@ -5,20 +5,8 @@ import logo from "../../assets/Dynamic 'L-Twins' Fitness Logo (1).png";
 import searchIcon from '../../assets/search-interface-symbol.png';
 import bagIcon from '../../assets/icons8-paper-bag-50.png';
 import './NavBar.css';
+import type { TrainingProgram } from '../../types';
 import trainingProgramsData from "../../data/trainingProgram.js";
-
-interface TrainingProgram {
-  id: number;
-  title: string;
-  body: string;
-  image: string;
-  experienceLevel: string;
-  goal: string;
-  price: number;
-  rating: number;
-  new: boolean;
-  salesCount: number;
-}
 
 const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
 

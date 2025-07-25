@@ -4,21 +4,9 @@ import searchIcon from "../../assets/search-interface-symbol.png";
 import filterIcon from "../../assets/icons8-filter-50.png";
 import arrowDownIcon from "../../assets/icons8-chevron-down-24.png";
 import ProgramCard from "../ProgramCard/ProgramCard";
+import type { TrainingProgram } from "../../types";
 // @ts-ignore
 import trainingProgramsData from "../../data/trainingProgram";
-
-interface TrainingProgram {
-  id: number;
-  title: string;
-  body: string;
-  image: string;
-  experienceLevel: string;
-  goal: string;
-  price: number;
-  rating: number;
-  new: boolean;
-  salesCount: number;
-}
 
 const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
 
