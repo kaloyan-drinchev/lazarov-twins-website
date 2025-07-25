@@ -3,6 +3,9 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import SingleProgramView from './components/SingleProgramView/SingleProgramView';
+// @ts-ignore
+import trainingProgramsData from './data/trainingProgram';
+import type { TrainingProgram } from './types';
 
 const Home = lazy(() => import('./components/Home/Home'));
 const About = lazy(() => import('./components/About/About'));
@@ -33,9 +36,19 @@ const TITLES: Record<string, string> = {
 
 export default function App() {
   const location = useLocation();
+  const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
 
   useEffect(() => {
-    document.title = TITLES[location.pathname] || 'L-Twins | Not Found';
+    // Check if it's a single program view route
+    const programMatch = location.pathname.match(/^\/singleProgramView\/(.+)$/);
+    
+    if (programMatch) {
+      const programId = programMatch[1];
+      const program = trainingPrograms.find(p => String(p.id) === String(programId));
+      document.title = program ? `L-Twins | ${program.title}` : 'L-Twins | Program Not Found';
+    } else {
+      document.title = TITLES[location.pathname] || 'L-Twins | Not Found';
+    }
   }, [location.pathname]);
 
   return (

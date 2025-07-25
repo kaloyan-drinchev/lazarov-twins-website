@@ -5,7 +5,7 @@ import filterIcon from "../../assets/icons8-filter-50.png";
 import arrowDownIcon from "../../assets/icons8-chevron-down-24.png";
 import ProgramCard from "../ProgramCard/ProgramCard";
 import type { TrainingProgram } from "../../types";
-// @ts-ignore
+// @ts-ignorex
 import trainingProgramsData from "../../data/trainingProgram";
 
 const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];

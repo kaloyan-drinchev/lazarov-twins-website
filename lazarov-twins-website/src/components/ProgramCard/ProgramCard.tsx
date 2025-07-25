@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import StarRating from "../StarRating/StarRating";
 import "./ProgramCard.css";
 import type { ProgramCardProps } from "../../types";
 
@@ -18,19 +19,7 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ program, className = "" }) =>
       </div>
       <div className="program-card-info-below">
         <h3 className="program-card-title" style={{ fontFamily: 'Arial Narrow, Arial, sans-serif' }}>{program.title}</h3>
-        <div className="program-card-rating">
-          {Array.from({ length: 5 }).map((_, i) => {
-            const fullStars = Math.floor(program.rating);
-            const hasHalfStar = program.rating % 1 >= 0.5;
-            if (i < fullStars) {
-              return <span key={i} className="star filled">★</span>;
-            } else if (i === fullStars && hasHalfStar) {
-              return <span key={i} className="star half">★</span>;
-            } else {
-              return <span key={i} className="star">★</span>;
-            }
-          })}
-        </div>
+        <StarRating rating={program.rating} className="program-card-rating" />
         <div className="program-card-category">
           {program.experienceLevel.toUpperCase()}
         </div>
