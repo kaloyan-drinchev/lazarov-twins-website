@@ -3,6 +3,10 @@
 .program-card-link {
   text-decoration: none !important;
   color: inherit;
+  width: 287px;
+  max-width: 287px;
+  min-width: 287px;
+  display: block;
 }
 
 .program-card {
@@ -10,12 +14,10 @@
   background: #222;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   width: 287px;
+  max-width: 287px;
+  min-width: 287px;
   height: 345px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: stretch;
   opacity: 0;
   transform: translateY(30px);
   animation: card-fade-in 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
@@ -36,46 +38,25 @@
 }
 
 .program-card-image {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
   transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
-}
-
-.program-card-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 1.2rem 0.5rem 1.2rem 0.5rem;
-  background: linear-gradient(0deg, rgba(0,0,0,0.7) 70%, transparent 100%);
-}
-
-.program-card-title,
-.program-card-rating,
-.program-card-category,
-.program-card-price {
-  position: static;
-  z-index: auto;
-  width: 100%;
 }
 
 .program-card-title {
   text-align: center;
-  color: #fff !important;
+  color: #333 !important;
   font-size: 1.3rem;
   font-weight: bold;
   margin: 0 0 0.3rem 0;
   text-decoration: none !important;
-  background: none;
-  padding: 0;
-  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+  width: 100%;
+  max-width: 287px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  padding: 0 0.5rem;
 }
 
 .program-card:hover .program-card-title,
@@ -89,6 +70,9 @@
   align-items: center;
   margin-top: 12px;
   margin-bottom: 18px;
+  width: 287px;
+  max-width: 287px;
+  box-sizing: border-box;
 }
 
 .program-card-rating {
@@ -157,5 +141,19 @@
 @media (max-width: 800px) {
   .program-card {
     width: calc(50% - 0.15rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .program-card-link {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+  }
+  
+  .program-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
   }
 } 

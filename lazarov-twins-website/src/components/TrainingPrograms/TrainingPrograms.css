@@ -347,8 +347,14 @@
   .mobile-bar {
     display: flex;
     gap: 0.7rem;
-    padding: 0.7rem 0;
     border-bottom: 1.5px solid #e5e5e5;
+    position: sticky;
+    top: 67px;
+    background: #fff;
+    z-index: 10;
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   .mobile-bar-btn {
     flex: 1;
@@ -359,11 +365,20 @@
     font-weight: 700;
     background: #fff;
     color: #222;
-    border: 1.5px solid #d1d1d1;
-    border-radius: 10px;
-    padding: 0.5rem 0.8rem;
+    border: none;
+    padding: 12px;
     cursor: pointer;
     transition: all 0.2s;
+  }
+  
+  .mobile-bar-btn:first-child {
+    border-right: 1px solid #d1d1d1;
+    margin-right: 0.35rem;
+    padding-right: 13px;
+  }
+  
+  .mobile-bar-btn:last-child {
+    margin-left: 0.35rem;
   }
   .mobile-bar-btn:active {
     background: #f3f3f3;

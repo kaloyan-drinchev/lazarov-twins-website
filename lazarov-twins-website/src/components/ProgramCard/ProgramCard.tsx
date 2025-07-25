@@ -15,11 +15,9 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ program, className = "" }) =>
           alt={program.title} 
           className="program-card-image" 
         />
-        <div className="program-card-content">
-          <h3 className="program-card-title">{program.title}</h3>
-        </div>
       </div>
       <div className="program-card-info-below">
+        <h3 className="program-card-title">{program.title}</h3>
         <div className="program-card-rating">
           {Array.from({ length: 5 }).map((_, i) => {
             const fullStars = Math.floor(program.rating);

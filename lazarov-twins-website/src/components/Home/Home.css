@@ -217,11 +217,11 @@
 
 @media (max-width: 480px) {
   .home-best-selling {
-    padding: 3rem 1rem;
+    padding: 3rem 1.5rem;
   }
   
   .home-best-selling-container {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
   
   .home-best-selling-title {
@@ -233,34 +233,21 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 1rem;
   }
   
   .home-program-card {
-    width: calc(50% - 0.5rem) !important;
-    max-width: calc(50% - 0.5rem) !important;
-    min-width: calc(50% - 0.5rem) !important;
-    flex: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    width: 100%;
+    max-width: 287px;
   }
   
   .home-program-card .program-card {
-    height: 180px !important;
-    width: 100% !important;
-    margin: 0 !important;
+    width: 100%;
   }
   
   /* Reset animation for mobile */
   .home-best-selling-grid.animate-in .home-program-card {
-    transform: none !important;
-    opacity: 1 !important;
-    transition: none !important;
-    width: 48% !important;
-    flex: none !important;
+    width: 100%;
+    max-width: 287px;
   }
 }
 
