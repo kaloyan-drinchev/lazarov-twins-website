@@ -3,7 +3,7 @@ import "./TrainingPrograms.css";
 import searchIcon from "../../assets/search-interface-symbol.png";
 import filterIcon from "../../assets/icons8-filter-50.png";
 import arrowDownIcon from "../../assets/icons8-chevron-down-24.png";
-import { Link } from "react-router-dom";
+import ProgramCard from "../ProgramCard/ProgramCard";
 // @ts-ignore
 import trainingProgramsData from "../../data/trainingProgram";
 
@@ -276,33 +276,7 @@ const TrainingPrograms: React.FC = () => {
           key={selectedExperience + selectedGoal + selectedSort + search}
         >
           {filteredPrograms.map((program: TrainingProgram) => (
-            <Link to={`/singleProgramView/${program.id}`} key={program.id} className="training-program-card-link">
-              <div className="training-program-card">
-                <img src={program.image} alt={program.title} className="training-program-image" />
-                <div className="training-program-card-content">
-                  <h3 className="training-program-title">{program.title}</h3>
-                </div>
-              </div>
-              <div className="training-program-info-below">
-                <div className="training-program-rating">
-                  {Array.from({ length: 5 }).map((_, i) => {
-                    const fullStars = Math.floor(program.rating);
-                    const hasHalfStar = program.rating % 1 >= 0.5;
-                    if (i < fullStars) {
-                      return <span key={i} className="star filled">★</span>;
-                    } else if (i === fullStars && hasHalfStar) {
-                      return <span key={i} className="star half">★</span>;
-                    } else {
-                      return <span key={i} className="star">★</span>;
-                    }
-                  })}
-                </div>
-                <div className="training-program-category">
-                  {program.experienceLevel.toUpperCase()}
-                </div>
-                <div className="training-program-price">${program.price.toFixed(2)}</div>
-              </div>
-            </Link>
+            <ProgramCard key={program.id} program={program} />
           ))}
         </div>
       </div>

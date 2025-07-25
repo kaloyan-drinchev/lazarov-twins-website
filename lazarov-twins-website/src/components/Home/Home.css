@@ -1,8 +1,6 @@
 .home-page {
   position: relative;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
 .home-page__video {
@@ -43,24 +41,204 @@
 
 .home-page__button {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 1rem 2.5rem;
-  background: #2d1a0b;
+  background: #000;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   margin-top: 0.5rem;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   pointer-events: auto;
+  position: relative;
+}
+
+.home-page__button::after {
+  display: none !important;
 }
 
 .home-page__button:hover {
-  background: #3a210e;
+  color: #fff !important;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.home-best-selling {
+  padding: 4rem 0;
+  margin-top: 2rem;
+}
+
+.home-best-selling-container {
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.home-best-selling-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #181818;
+  margin-bottom: 3rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+}
+
+.home-best-selling-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.home-program-card {
+  flex: 0 0 auto;
+  width: calc(20% - 1.6rem);
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.home-best-selling-grid.animate-in .home-program-card:nth-child(1) {
+  transition-delay: 0.1s;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.home-best-selling-grid.animate-in .home-program-card:nth-child(2) {
+  transition-delay: 0.2s;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.home-best-selling-grid.animate-in .home-program-card:nth-child(3) {
+  transition-delay: 0.3s;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.home-best-selling-grid.animate-in .home-program-card:nth-child(4) {
+  transition-delay: 0.4s;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.home-best-selling-grid.animate-in .home-program-card:nth-child(5) {
+  transition-delay: 0.5s;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Override ProgramCard styles for home page */
+.home-program-card .program-card {
+  width: 100% !important;
+  height: 280px !important;
+  min-width: auto !important;
+}
+
+.home-program-card .program-card-title {
+  font-size: 1.1rem !important;
+}
+
+.home-program-card .program-card-category {
+  font-size: 0.9rem !important;
+}
+
+.home-program-card .program-card-price {
+  font-size: 1rem !important;
+}
+
+.home-view-all-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: #000;
   color: #fff;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.home-view-all-button::after {
+  display: none !important;
+}
+
+.home-view-all-button:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .home-best-selling {
+    padding: 3rem 1rem;
+  }
+  
+  .home-best-selling-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  .home-best-selling-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .home-program-card {
+    width: calc(50% - 0.75rem);
+  }
+  
+  .home-program-card .program-card {
+    height: 200px !important;
+  }
+  
+  .home-view-all-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-best-selling-title {
+    font-size: 1.5rem;
+  }
+  
+  .home-best-selling-grid {
+    gap: 1rem;
+  }
+  
+  .home-program-card {
+    width: 100%;
+  }
+  
+  .home-program-card .program-card {
+    height: 240px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .home-best-selling {
+    padding: 4rem 4rem;
+  }
+  
+  .home-best-selling-grid {
+    gap: 3rem;
+  }
 }
 
 @media (max-width: 600px) {
