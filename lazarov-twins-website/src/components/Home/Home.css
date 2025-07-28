@@ -83,8 +83,9 @@
 }
 
 .home-best-selling-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   margin-bottom: 3rem;
   opacity: 0;
@@ -99,6 +100,9 @@
 
 .home-program-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 280px;
+  max-width: 320px;
+  min-width: 260px;
 }
 
 .home-program-card:hover {
@@ -321,7 +325,6 @@
   }
 
   .home-best-selling-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
 
@@ -346,8 +349,13 @@
   }
 
   .home-best-selling-grid {
-    grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
+  }
+
+  .home-program-card {
+    flex: 0 1 320px;
+    max-width: 320px;
+    min-width: 280px;
   }
 
   .home-best-selling-title {
@@ -370,7 +378,7 @@
 /* Large desktop */
 @media (min-width: 1200px) {
   .home-best-selling-grid {
-    grid-template-columns: repeat(5, 1fr);
+    gap: 3.5rem;
   }
 }
 
@@ -386,6 +394,16 @@
   .home-page__button {
     font-size: 1rem;
     padding: 0.7rem 1.5rem;
+  }
+
+  .home-best-selling-grid {
+    gap: 1.5rem;
+  }
+
+  .home-program-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 280px;
   }
 
   .home-app-download {
