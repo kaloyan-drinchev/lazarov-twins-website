@@ -49,13 +49,38 @@
   border-radius: 4px;
   margin-top: 0.5rem;
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: background 0.3s ease;
   pointer-events: auto;
 }
 
+.home-page__button:visited,
+.home-page__button:focus,
+.home-page__button:active {
+  text-decoration: none !important;
+}
+
+/* Override global navbar link styles */
+.home-page__button::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+}
+
+.home-page__button:hover::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+}
+
 .home-page__button:hover {
   background: #333;
+  text-decoration: none !important;
+  color: #fff !important;
 }
 
 /* Best Selling Programs Section */
@@ -121,15 +146,40 @@
   color: #fff;
   border: none;
   border-radius: 50px;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.home-view-all-button:visited,
+.home-view-all-button:focus,
+.home-view-all-button:active {
+  text-decoration: none !important;
+}
+
+/* Override global navbar link styles */
+.home-view-all-button::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+}
+
+.home-view-all-button:hover::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
 }
 
 .home-view-all-button:hover {
   background: linear-gradient(135deg, #0056b3, #004085);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+  text-decoration: none !important;
+  color: #fff !important;
 }
 
 /* App Download Section */
