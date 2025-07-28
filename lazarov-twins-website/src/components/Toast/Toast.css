@@ -1,0 +1,271 @@
+/* Mobile-first Toast Notification Styles */
+.toast-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.toast-overlay.show {
+  opacity: 1;
+}
+
+.toast {
+  position: fixed;
+  bottom: -100%; /* Mobile-first: slide up from bottom */
+  left: 1rem;
+  right: 1rem;
+  background: white;
+  border-radius: 16px 16px 8px 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.toast.show {
+  bottom: 2rem; /* Mobile-first: visible position */
+  transform: translateY(0);
+}
+
+.toast-content {
+  padding: 1.5rem;
+}
+
+.toast-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.toast-icon {
+  background: #28a745;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: bounceIn 0.6s ease;
+}
+
+.checkmark {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.toast-header h3 {
+  color: #333;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  flex: 1;
+  line-height: 1.2;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.toast-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.toast-body {
+  margin-bottom: 1.5rem;
+}
+
+.toast-product {
+  color: #666;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.toast-product strong {
+  color: #333;
+}
+
+.toast-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-direction: column; /* Mobile-first: stack buttons */
+}
+
+.toast-btn {
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 50px; /* Mobile-first: touch target */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-btn-primary {
+  background: #007bff;
+  color: white;
+  order: 1; /* Mobile-first: primary action first */
+}
+
+.toast-btn-primary:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.toast-btn-secondary {
+  background: #f8f9fa;
+  color: #666;
+  border: 2px solid #e9ecef;
+  order: 2;
+}
+
+.toast-btn-secondary:hover {
+  background: #e9ecef;
+  color: #333;
+  transform: translateY(-2px);
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .toast {
+    /* Tablet: top-right notification */
+    bottom: auto;
+    top: -100px;
+    right: 2rem;
+    left: auto;
+    width: 400px;
+    border-radius: 12px;
+  }
+
+  .toast.show {
+    top: 2rem;
+    bottom: auto;
+  }
+
+  .toast-overlay {
+    /* No overlay needed on larger screens */
+    display: none;
+  }
+
+  .toast-actions {
+    flex-direction: row;
+  }
+
+  .toast-btn-primary {
+    order: 0;
+    flex: 1;
+  }
+
+  .toast-btn-secondary {
+    order: 0;
+    flex: none;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .toast {
+    width: 450px;
+  }
+
+  .toast-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .toast-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .toast {
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: -100%;
+  }
+
+  .toast.show {
+    bottom: 1rem;
+  }
+
+  .toast-content {
+    padding: 1.25rem;
+  }
+
+  .toast-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .toast-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 360px) {
+  .toast-header {
+    gap: 0.75rem;
+  }
+
+  .toast-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .checkmark {
+    font-size: 1.3rem;
+  }
+
+  .toast-header h3 {
+    font-size: 1.1rem;
+  }
+} 

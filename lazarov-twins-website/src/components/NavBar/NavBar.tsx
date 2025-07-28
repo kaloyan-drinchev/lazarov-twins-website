@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import burgerIcon from '../../assets/burger-menu-svgrepo-com.svg';
 import logo from "../../assets/Dynamic 'L-Twins' Fitness Logo (1).png";
 import searchIcon from '../../assets/search-interface-symbol.png';
 import bagIcon from '../../assets/icons8-paper-bag-50.png';
+import { useCart } from '../../contexts/CartContext';
 import './NavBar.css';
 import type { TrainingProgram } from '../../types';
 import trainingProgramsData from "../../data/trainingProgram.js";
@@ -26,6 +27,8 @@ const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const { getCartItemCount } = useCart();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const nav = document.querySelector('nav.navbar');
@@ -48,6 +51,7 @@ const NavBar: React.FC = () => {
   const handleClose = () => setMenuOpen(false);
   const handleSearchOpen = () => setSearchOpen(true);
   const handleSearchClose = () => setSearchOpen(false);
+  const handleCartClick = () => navigate('/cart');
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,6 +63,8 @@ const NavBar: React.FC = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const cartItemCount = getCartItemCount();
 
   return (
     <header>
@@ -112,7 +118,18 @@ const NavBar: React.FC = () => {
             style={{ cursor: 'pointer' }}
             onClick={handleSearchOpen}
           />
-          <img src={bagIcon} alt="Bag" className="navbar__icon" />
+          <div className="navbar__cart-wrapper">
+            <img 
+              src={bagIcon} 
+              alt="Cart" 
+              className="navbar__icon" 
+              style={{ cursor: 'pointer' }}
+              onClick={handleCartClick}
+            />
+            {cartItemCount > 0 && (
+              <span className="navbar__cart-count">{cartItemCount}</span>
+            )}
+          </div>
         </div>
         {searchOpen && (
           <div className="navbar__search-menu open">

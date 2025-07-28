@@ -3,6 +3,9 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import SingleProgramView from './components/SingleProgramView/SingleProgramView';
+import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
+import OrderSuccess from './components/OrderSuccess/OrderSuccess';
 // @ts-ignore
 import trainingProgramsData from './data/trainingProgram';
 import type { TrainingProgram } from './types';
@@ -32,6 +35,9 @@ const TITLES: Record<string, string> = {
   '/sponsors': 'L-Twins | Sponsors',
   '/blog': 'L-Twins | Blog',
   '/contact': 'L-Twins | Contact',
+  '/cart': 'L-Twins | Cart',
+  '/checkout': 'L-Twins | Checkout',
+  '/order-success': 'L-Twins | Order Complete',
 };
 
 export default function App() {
@@ -64,6 +70,9 @@ export default function App() {
           <Route path="sponsors" element={<Sponsors />} />
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="order-success" element={<OrderSuccess />} />
           <Route path="singleProgramView/:id" element={<SingleProgramView />} />
           <Route path="*" element={<NotFound />} />
         </Route>
