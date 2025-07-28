@@ -57,10 +57,12 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 // Cart provider component
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, dispatch] = useReducer(cartReducer, []);
+  const [isInitialized, setIsInitialized] = React.useState(false);
 
   // Load cart from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem('ltwinscart');
+    
     if (savedCart) {
       try {
         const parsedCart = JSON.parse(savedCart);
@@ -69,12 +71,19 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.error('Error loading cart from localStorage:', error);
       }
     }
+    
+    // Mark as initialized after loading
+    setIsInitialized(true);
   }, []);
 
-  // Save cart to localStorage whenever items change
+  // Save cart to localStorage whenever items change (but not on initial load)
   useEffect(() => {
+    if (!isInitialized) {
+      return;
+    }
+    
     localStorage.setItem('ltwinscart', JSON.stringify(items));
-  }, [items]);
+  }, [items, isInitialized]);
 
   const addToCart = (program: TrainingProgram) => {
     dispatch({ type: 'ADD_TO_CART', payload: program });
