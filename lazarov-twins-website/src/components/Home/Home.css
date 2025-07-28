@@ -50,228 +50,380 @@
   margin-top: 0.5rem;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
   pointer-events: auto;
-  position: relative;
-}
-
-.home-page__button::after {
-  display: none !important;
 }
 
 .home-page__button:hover {
-  color: #fff !important;
-  text-decoration: none;
-  transform: translateY(-2px);
+  background: #333;
 }
 
+/* Best Selling Programs Section */
 .home-best-selling {
-  padding: 4rem 0;
-  margin-top: 2rem;
+  padding: 3rem 1rem;
+  background: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .home-best-selling-container {
-  max-width: 1500px;
-  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
-  text-align: center;
+  width: 100%;
 }
 
 .home-best-selling-title {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #181818;
+  color: #333;
+  text-align: center;
   margin-bottom: 3rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: -0.5px;
 }
 
 .home-best-selling-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 2rem;
-  justify-content: center;
   margin-bottom: 3rem;
-  width: 100%;
-  overflow-x: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.home-best-selling-grid.animate-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .home-program-card {
-  flex: 0 0 auto;
-  width: 287px;
-  max-width: 287px;
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.home-best-selling-grid.animate-in .home-program-card:nth-child(1) {
-  transition-delay: 0.1s;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.home-best-selling-grid.animate-in .home-program-card:nth-child(2) {
-  transition-delay: 0.2s;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.home-best-selling-grid.animate-in .home-program-card:nth-child(3) {
-  transition-delay: 0.3s;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.home-best-selling-grid.animate-in .home-program-card:nth-child(4) {
-  transition-delay: 0.4s;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.home-best-selling-grid.animate-in .home-program-card:nth-child(5) {
-  transition-delay: 0.5s;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Override ProgramCard styles for home page */
-.home-program-card .program-card {
-  width: 100% !important;
-  height: 280px !important;
-  min-width: auto !important;
-}
-
-.home-program-card .program-card-title {
-  font-size: 1.1rem !important;
-}
-
-.home-program-card .program-card-category {
-  font-size: 0.9rem !important;
-}
-
-.home-program-card .program-card-price {
-  font-size: 1rem !important;
+.home-program-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .home-view-all-button {
-  display: inline-block;
-  padding: 1rem 2.5rem;
-  background: #000;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
   font-size: 1.1rem;
-  border-radius: 4px;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  position: relative;
-}
-
-.home-view-all-button::after {
-  display: none !important;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
 .home-view-all-button:hover {
-  color: #fff !important;
-  text-decoration: none !important;
+  background: linear-gradient(135deg, #0056b3, #004085);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
+/* App Download Section */
+.home-app-download {
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-app-download::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.home-app-download-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.home-app-download-content {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.home-app-download-content.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.home-app-download-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
+}
+
+.home-app-download-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-app-download-features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.home-app-download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-download-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  height: 60px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Override global navbar link styles */
+.app-download-btn::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+}
+
+.app-download-btn:hover::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+}
+
+.app-download-btn:hover {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.app-download-btn-android {
+  background: linear-gradient(135deg, #3DDC84, #00D084);
+  color: white;
+}
+
+.app-download-btn-ios {
+  background: linear-gradient(135deg, #007AFF, #0051D5);
+  color: white;
+}
+
+.app-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.app-btn-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-btn-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.app-btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.app-btn-subtitle {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  line-height: 1;
+}
+
+.app-btn-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.home-app-download-note {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
   .home-best-selling {
-    padding: 3rem 1rem;
+    padding: 4rem 2rem;
   }
-  
-  .home-best-selling-title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-  }
-  
+
   .home-best-selling-grid {
-    flex-wrap: wrap;
-    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .home-app-download {
+    padding: 5rem 2rem;
+  }
+
+  .home-app-download-buttons {
     flex-direction: row;
     gap: 2rem;
-    margin-bottom: 2rem;
   }
-  
-  .home-program-card {
-    width: calc(50% - 1rem);
-    flex: 0 0 calc(50% - 1rem);
-  }
-  
-  .home-program-card .program-card {
-    height: 200px !important;
-  }
-  
-  .home-view-all-button {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-  }
-}
 
-@media (max-width: 480px) {
-  .home-best-selling {
-    padding: 3rem 1.5rem;
-  }
-  
-  .home-best-selling-container {
-    padding: 0 1rem;
-  }
-  
-  .home-best-selling-title {
-    font-size: 1.5rem;
-  }
-  
-  .home-best-selling-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .home-program-card {
-    width: 100%;
-    max-width: 287px;
-  }
-  
-  .home-program-card .program-card {
-    width: 100%;
-  }
-  
-  /* Reset animation for mobile */
-  .home-best-selling-grid.animate-in .home-program-card {
-    width: 100%;
-    max-width: 287px;
-  }
-}
-
-@media (min-width: 1400px) {
-  .home-best-selling {
-    padding: 4rem 4rem;
-  }
-  
-  .home-best-selling-grid {
+  .home-app-download-features {
     gap: 3rem;
   }
 }
 
-@media (max-width: 600px) {
-  .home-page__overlay-content {
-    padding: 1.2rem 0.7rem;
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .home-best-selling {
+    padding: 5rem 2rem;
   }
+
+  .home-best-selling-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .home-best-selling-title {
+    font-size: 3rem;
+  }
+
+  .home-app-download {
+    padding: 6rem 2rem;
+  }
+
+  .home-app-download-title {
+    font-size: 3rem;
+  }
+
+  .home-app-download-description {
+    font-size: 1.3rem;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  .home-best-selling-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .home-page__overlay-content {
+    padding: 2rem 1rem;
+  }
+  
   .home-page__title {
     font-size: 2rem;
   }
   .home-page__button {
     font-size: 1rem;
     padding: 0.7rem 1.5rem;
+  }
+
+  .home-app-download {
+    padding: 3rem 1rem;
+  }
+
+  .home-app-download-title {
+    font-size: 2rem;
+  }
+
+  .home-app-download-description {
+    font-size: 1.1rem;
+  }
+
+  .home-app-download-features {
+    gap: 1rem;
+  }
+
+  .feature-item {
+    min-width: 100px;
+  }
+
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+
+  .app-download-btn {
+    min-width: 180px;
+    height: 55px;
+    padding: 0.6rem 1.25rem;
+  }
+
+  .app-btn-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .app-btn-title {
+    font-size: 1rem;
   }
 }
