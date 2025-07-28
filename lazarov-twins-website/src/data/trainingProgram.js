@@ -7,7 +7,12 @@
  * @property {string} experienceLevel
  * @property {string} goal
  * @property {number} price
- * @property {number} rating
+ * @property {Object} ratings - Rating counts by star level
+ * @property {number} ratings.1 - Number of 1-star ratings
+ * @property {number} ratings.2 - Number of 2-star ratings
+ * @property {number} ratings.3 - Number of 3-star ratings
+ * @property {number} ratings.4 - Number of 4-star ratings
+ * @property {number} ratings.5 - Number of 5-star ratings
  * @property {boolean} new
  * @property {number} salesCount
  */
@@ -22,7 +27,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Muscle",
     "price": 29.99,
-    "rating": 4,
+    "ratings": {
+      "1": 3,
+      "2": 8,
+      "3": 15,
+      "4": 45,
+      "5": 67
+    },
     "new": true,
     "salesCount": 120
   },
@@ -34,7 +45,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Strength",
     "price": 39.99,
-    "rating": 5,
+    "ratings": {
+      "1": 1,
+      "2": 2,
+      "3": 8,
+      "4": 22,
+      "5": 89
+    },
     "new": false,
     "salesCount": 80
   },
@@ -46,7 +63,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 5,
+    "ratings": {
+      "1": 0,
+      "2": 1,
+      "3": 4,
+      "4": 18,
+      "5": 42
+    },
     "new": true,
     "salesCount": 150
   },
@@ -58,7 +81,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Muscle",
     "price": 29.99,
-    "rating": 4,
+    "ratings": {
+      "1": 5,
+      "2": 10,
+      "3": 20,
+      "4": 50,
+      "5": 75
+    },
     "new": false,
     "salesCount": 100
   },
@@ -70,7 +99,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Strength",
     "price": 39.99,
-    "rating": 5,
+    "ratings": {
+      "1": 2,
+      "2": 5,
+      "3": 12,
+      "4": 30,
+      "5": 53
+    },
     "new": true,
     "salesCount": 110
   },
@@ -82,7 +117,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 4,
+    "ratings": {
+      "1": 1,
+      "2": 3,
+      "3": 10,
+      "4": 25,
+      "5": 61
+    },
     "new": false,
     "salesCount": 130
   },
@@ -94,7 +135,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Strength",
     "price": 29.99,
-    "rating": 3,
+    "ratings": {
+      "1": 4,
+      "2": 10,
+      "3": 20,
+      "4": 40,
+      "5": 76
+    },
     "new": true,
     "salesCount": 90
   },
@@ -106,7 +153,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Muscle",
     "price": 39.99,
-    "rating": 5,
+    "ratings": {
+      "1": 3,
+      "2": 7,
+      "3": 15,
+      "4": 35,
+      "5": 70
+    },
     "new": false,
     "salesCount": 105
   },
@@ -118,7 +171,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 5,
+    "ratings": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 5,
+      "5": 15
+    },
     "new": true,
     "salesCount": 140
   },
@@ -130,7 +189,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Strength",
     "price": 29.99,
-    "rating": 4,
+    "ratings": {
+      "1": 6,
+      "2": 15,
+      "3": 30,
+      "4": 60,
+      "5": 90
+    },
     "new": false,
     "salesCount": 115
   },
@@ -142,7 +207,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Muscle",
     "price": 39.99,
-    "rating": 4,
+    "ratings": {
+      "1": 4,
+      "2": 10,
+      "3": 20,
+      "4": 40,
+      "5": 70
+    },
     "new": true,
     "salesCount": 125
   },
@@ -154,7 +225,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 5,
+    "ratings": {
+      "1": 1,
+      "2": 3,
+      "3": 10,
+      "4": 25,
+      "5": 61
+    },
     "new": false,
     "salesCount": 135
   },
@@ -166,7 +243,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Muscle",
     "price": 29.99,
-    "rating": 4,
+    "ratings": {
+      "1": 5,
+      "2": 10,
+      "3": 20,
+      "4": 50,
+      "5": 75
+    },
     "new": true,
     "salesCount": 100
   },
@@ -178,7 +261,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Strength",
     "price": 39.99,
-    "rating": 5,
+    "ratings": {
+      "1": 3,
+      "2": 7,
+      "3": 15,
+      "4": 35,
+      "5": 70
+    },
     "new": false,
     "salesCount": 110
   },
@@ -190,7 +279,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 4,
+    "ratings": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 5,
+      "5": 15
+    },
     "new": true,
     "salesCount": 120
   },
@@ -202,7 +297,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Strength",
     "price": 29.99,
-    "rating": 3,
+    "ratings": {
+      "1": 6,
+      "2": 15,
+      "3": 30,
+      "4": 60,
+      "5": 90
+    },
     "new": false,
     "salesCount": 95
   },
@@ -214,7 +315,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Muscle",
     "price": 39.99,
-    "rating": 4,
+    "ratings": {
+      "1": 4,
+      "2": 10,
+      "3": 20,
+      "4": 40,
+      "5": 70
+    },
     "new": true,
     "salesCount": 115
   },
@@ -226,7 +333,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 5,
+    "ratings": {
+      "1": 1,
+      "2": 3,
+      "3": 10,
+      "4": 25,
+      "5": 61
+    },
     "new": false,
     "salesCount": 145
   },
@@ -238,7 +351,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Muscle",
     "price": 29.99,
-    "rating": 4,
+    "ratings": {
+      "1": 6,
+      "2": 15,
+      "3": 30,
+      "4": 60,
+      "5": 90
+    },
     "new": true,
     "salesCount": 105
   },
@@ -250,7 +369,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Strength",
     "price": 39.99,
-    "rating": 5,
+    "ratings": {
+      "1": 4,
+      "2": 10,
+      "3": 20,
+      "4": 40,
+      "5": 70
+    },
     "new": false,
     "salesCount": 120
   },
@@ -262,7 +387,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 4,
+    "ratings": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 5,
+      "5": 15
+    },
     "new": true,
     "salesCount": 130
   },
@@ -274,7 +405,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Strength",
     "price": 29.99,
-    "rating": 3,
+    "ratings": {
+      "1": 6,
+      "2": 15,
+      "3": 30,
+      "4": 60,
+      "5": 90
+    },
     "new": false,
     "salesCount": 90
   },
@@ -286,7 +423,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Muscle",
     "price": 39.99,
-    "rating": 5,
+    "ratings": {
+      "1": 4,
+      "2": 10,
+      "3": 20,
+      "4": 40,
+      "5": 70
+    },
     "new": true,
     "salesCount": 110
   },
@@ -298,7 +441,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 5,
+    "ratings": {
+      "1": 1,
+      "2": 3,
+      "3": 10,
+      "4": 25,
+      "5": 61
+    },
     "new": false,
     "salesCount": 150
   },
@@ -310,7 +459,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Muscle",
     "price": 29.99,
-    "rating": 4,
+    "ratings": {
+      "1": 6,
+      "2": 15,
+      "3": 30,
+      "4": 60,
+      "5": 90
+    },
     "new": true,
     "salesCount": 100
   },
@@ -322,7 +477,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Strength",
     "price": 39.99,
-    "rating": 4,
+    "ratings": {
+      "1": 4,
+      "2": 10,
+      "3": 20,
+      "4": 40,
+      "5": 70
+    },
     "new": false,
     "salesCount": 115
   },
@@ -334,7 +495,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 5,
+    "ratings": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 5,
+      "5": 15
+    },
     "new": true,
     "salesCount": 125
   },
@@ -346,7 +513,13 @@ const trainingPrograms = [
     "experienceLevel": "beginner",
     "goal": "Gain Strength",
     "price": 29.99,
-    "rating": 4,
+    "ratings": {
+      "1": 6,
+      "2": 15,
+      "3": 30,
+      "4": 60,
+      "5": 90
+    },
     "new": false,
     "salesCount": 95
   },
@@ -358,7 +531,13 @@ const trainingPrograms = [
     "experienceLevel": "intermediate",
     "goal": "Gain Muscle",
     "price": 39.99,
-    "rating": 5,
+    "ratings": {
+      "1": 4,
+      "2": 10,
+      "3": 20,
+      "4": 40,
+      "5": 70
+    },
     "new": true,
     "salesCount": 110
   },
@@ -370,7 +549,13 @@ const trainingPrograms = [
     "experienceLevel": "advanced",
     "goal": "Gain Strength and Muscle",
     "price": 49.99,
-    "rating": 4,
+    "ratings": {
+      "1": 1,
+      "2": 3,
+      "3": 10,
+      "4": 25,
+      "5": 61
+    },
     "new": false,
     "salesCount": 135
   }

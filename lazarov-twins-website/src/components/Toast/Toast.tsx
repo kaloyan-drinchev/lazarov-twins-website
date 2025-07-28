@@ -5,13 +5,25 @@ import './Toast.css';
 interface ToastProps {
   show: boolean;
   onClose: () => void;
-  productTitle: string;
+  productTitle?: string;
+  type?: 'success' | 'confirmation';
+  title?: string;
+  message?: string;
+  onConfirm?: () => void;
+  confirmText?: string;
+  cancelText?: string;
 }
 
 const Toast: React.FC<ToastProps> = ({ 
   show, 
   onClose, 
-  productTitle
+  productTitle,
+  type = 'success',
+  title,
+  message,
+  onConfirm,
+  confirmText = 'Yes, Remove',
+  cancelText = 'Cancel'
 }) => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
@@ -33,6 +45,13 @@ const Toast: React.FC<ToastProps> = ({
     }, 300);
   };
 
+  const handleConfirm = () => {
+    if (onConfirm) {
+      onConfirm();
+    }
+    handleClose();
+  };
+
   const handleViewCart = () => {
     handleClose();
     navigate('/cart');
@@ -44,6 +63,57 @@ const Toast: React.FC<ToastProps> = ({
 
   if (!isVisible) return null;
 
+  // Confirmation Toast
+  if (type === 'confirmation') {
+    return (
+      <>
+        <div 
+          className={`toast-overlay ${isAnimating ? 'show' : ''}`}
+          onClick={handleClose}
+        />
+        <div className={`toast toast-confirmation ${isAnimating ? 'show' : ''}`}>
+          <div className="toast-content">
+            <div className="toast-header">
+              <div className="toast-icon toast-icon-warning">
+                <span className="warning-icon">⚠️</span>
+              </div>
+              <h3>{title || 'Confirm Action'}</h3>
+              <button 
+                className="toast-close"
+                onClick={handleClose}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            
+            <div className="toast-body">
+              <p className="toast-message">
+                {message || 'Are you sure you want to proceed?'}
+              </p>
+            </div>
+
+            <div className="toast-actions">
+              <button 
+                className="toast-btn toast-btn-secondary"
+                onClick={handleClose}
+              >
+                {cancelText}
+              </button>
+              <button 
+                className="toast-btn toast-btn-danger"
+                onClick={handleConfirm}
+              >
+                {confirmText}
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Success Toast (original functionality)
   return (
     <>
       <div 

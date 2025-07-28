@@ -1,4 +1,4 @@
-// Centralized interfaces for the L-Twins Fitness website
+import { RatingData } from '../utils/ratingUtils';
 
 export interface TrainingProgram {
   id: number;
@@ -8,7 +8,7 @@ export interface TrainingProgram {
   experienceLevel: string;
   goal: string;
   price: number;
-  rating: number;
+  ratings: RatingData;
   new: boolean;
   salesCount: number;
 }
@@ -27,6 +27,10 @@ export interface CartItem {
   quantity: number;
   experienceLevel: string;
   goal: string;
+}
+
+export interface CartState {
+  items: CartItem[];
 }
 
 export interface CartContextType {

@@ -4,6 +4,7 @@ import type { TrainingProgram } from "../../types";
 import StarRating from "../StarRating/StarRating";
 import { useCart } from "../../contexts/CartContext";
 import Toast from "../Toast/Toast";
+import { calculateAverageRating, getTotalRatings, formatAverageRating } from "../../utils/ratingUtils";
 import "./SingleProgramView.css";
 
 // @ts-ignore
@@ -22,6 +23,11 @@ const SingleProgramView: React.FC = () => {
   if (!program) {
     return <div>Program not found</div>;
   }
+
+  // Calculate rating metrics
+  const averageRating = calculateAverageRating(program.ratings);
+  const totalReviews = getTotalRatings(program.ratings);
+  const formattedRating = formatAverageRating(program.ratings);
 
   const handleAddToCart = () => {
     setIsAdding(true);
@@ -45,11 +51,20 @@ const SingleProgramView: React.FC = () => {
         <div className="single-program-info">
           <h2>{program.title}</h2>
           <p>{program.body}</p>
-          <StarRating rating={program.rating} />
-          <p>{program.experienceLevel}</p>
-          <p>{program.goal}</p>
+          
+          <div className="rating-section">
+            <StarRating rating={averageRating} />
+            <div className="rating-details">
+              <span className="rating-number">{formattedRating}</span>
+              <span className="rating-count">({totalReviews} reviews)</span>
+            </div>
+          </div>
+          
+          <p><strong>Level:</strong> {program.experienceLevel}</p>
+          <p><strong>Goal:</strong> {program.goal}</p>
           <p className="price">${program.price}</p>
-          <p>{program.salesCount} sales</p>
+          <p className="sales-count">{program.salesCount} sales</p>
+          
           <button 
             className={`add-to-cart-btn ${isAdding ? 'adding' : ''}`} 
             onClick={handleAddToCart}

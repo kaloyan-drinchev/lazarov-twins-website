@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
+import Toast from '../Toast/Toast';
 import './Cart.css';
 
 const Cart: React.FC = () => {
   const { items, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
   const navigate = useNavigate();
+  
+  // Toast states
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
+  const [itemToRemove, setItemToRemove] = useState<number | null>(null);
+  const [itemNameToRemove, setItemNameToRemove] = useState<string>('');
 
   if (items.length === 0) {
     return (
@@ -25,14 +32,40 @@ const Cart: React.FC = () => {
 
   const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity < 1) {
-      removeFromCart(id);
+      // Find the item name for confirmation
+      const item = items.find(item => item.id === id);
+      setItemToRemove(id);
+      setItemNameToRemove(item?.title || 'item');
+      setShowRemoveConfirm(true);
     } else {
       updateQuantity(id, newQuantity);
     }
   };
 
+  const handleRemoveClick = (id: number) => {
+    const item = items.find(item => item.id === id);
+    setItemToRemove(id);
+    setItemNameToRemove(item?.title || 'item');
+    setShowRemoveConfirm(true);
+  };
+
+  const handleClearCartClick = () => {
+    setShowClearConfirm(true);
+  };
+
+  const confirmRemoveItem = () => {
+    if (itemToRemove !== null) {
+      removeFromCart(itemToRemove);
+      setItemToRemove(null);
+      setItemNameToRemove('');
+    }
+  };
+
+  const confirmClearCart = () => {
+    clearCart();
+  };
+
   const handleCheckout = () => {
-    // For now, just navigate to a checkout page (we'll create this next)
     navigate('/checkout');
   };
 
@@ -41,7 +74,7 @@ const Cart: React.FC = () => {
       <div className="cart-content">
         <div className="cart-header">
           <h2>Your Cart ({items.length} {items.length === 1 ? 'item' : 'items'})</h2>
-          <button onClick={clearCart} className="clear-cart-btn">
+          <button onClick={handleClearCartClick} className="clear-cart-btn">
             Clear Cart
           </button>
         </div>
@@ -74,7 +107,7 @@ const Cart: React.FC = () => {
                 </div>
                 
                 <button 
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => handleRemoveClick(item.id)}
                   className="remove-btn"
                 >
                   Remove
@@ -103,6 +136,34 @@ const Cart: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Clear Cart Confirmation Toast */}
+      <Toast
+        show={showClearConfirm}
+        onClose={() => setShowClearConfirm(false)}
+        type="confirmation"
+        title="Clear Cart"
+        message={`Are you sure you want to remove all items from your cart?`}
+        onConfirm={confirmClearCart}
+        confirmText="Yes, Clear All"
+        cancelText="Keep Items"
+      />
+
+      {/* Remove Item Confirmation Toast */}
+      <Toast
+        show={showRemoveConfirm}
+        onClose={() => {
+          setShowRemoveConfirm(false);
+          setItemToRemove(null);
+          setItemNameToRemove('');
+        }}
+        type="confirmation"
+        title="Remove Item"
+        message={`Are you sure you want to remove "${itemNameToRemove}" from your cart?`}
+        onConfirm={confirmRemoveItem}
+        confirmText="Yes, Remove"
+        cancelText="Keep Item"
+      />
     </div>
   );
 };

@@ -193,14 +193,27 @@ const Checkout: React.FC = () => {
                 )}
 
                 <div className="form-actions">
-                  <button type="button" onClick={() => navigate('/cart')} className="back-to-cart-btn">
-                    ← Back to Cart
-                  </button>
                   <button type="submit" className="continue-btn">
                     Continue to Payment →
                   </button>
                 </div>
               </form>
+              
+              {/* Order Summary - replaces back to cart button */}
+              <div className="checkout-order-summary">
+                <h4>Order Summary</h4>
+                <div className="summary-items">
+                  {items.map((item) => (
+                    <div key={item.id} className="summary-item">
+                      <span className="item-title">{item.title}</span>
+                      <span className="item-price">${item.price.toFixed(2)} × {item.quantity}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="summary-total">
+                  <strong>Total: ${getCartTotal().toFixed(2)}</strong>
+                </div>
+              </div>
             </div>
           )}
 
@@ -225,22 +238,6 @@ const Checkout: React.FC = () => {
               />
             </div>
           )}
-
-          <div className="order-summary">
-            <h3>Order Summary</h3>
-            <div className="summary-items">
-              {items.map((item) => (
-                <div key={item.id} className="summary-item">
-                  <span className="item-name">{item.title}</span>
-                  <span className="item-quantity">×{item.quantity}</span>
-                  <span className="item-price">${(item.price * item.quantity).toFixed(2)}</span>
-                </div>
-              ))}
-            </div>
-            <div className="summary-total">
-              <strong>Total: ${getCartTotal().toFixed(2)}</strong>
-            </div>
-          </div>
         </div>
       </div>
     </div>
