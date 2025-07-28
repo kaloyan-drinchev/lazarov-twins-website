@@ -2,15 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import ProgramCard from '../ProgramCard/ProgramCard';
+import { useTrainingPrograms } from '../../hooks/useTrainingPrograms';
 import type { TrainingProgram } from '../../types';
-// @ts-ignore
-import trainingProgramsData from '../../data/trainingProgram';
-
-const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
 
 const Home: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAppSectionVisible, setIsAppSectionVisible] = useState(false);
+  const { programs: trainingPrograms, loading, error } = useTrainingPrograms();
   const sectionRef = useRef<HTMLElement>(null);
   const appSectionRef = useRef<HTMLElement>(null);
 
@@ -75,15 +73,21 @@ const Home: React.FC = () => {
       <section className="home-best-selling" ref={sectionRef}>
         <div className="home-best-selling-container">
           <h2 className="home-best-selling-title">Best Selling Programs</h2>
-          <div className={`home-best-selling-grid ${isVisible ? 'animate-in' : ''}`}>
-            {bestSellingPrograms.map((program) => (
-              <ProgramCard 
-                key={program.id} 
-                program={program} 
-                className="home-program-card" 
-              />
-            ))}
-          </div>
+                     <div className={`home-best-selling-grid ${isVisible ? 'animate-in' : ''}`}>
+             {loading ? (
+               <p>Loading programs...</p>
+             ) : error ? (
+               <p>Error loading programs: {error}</p>
+             ) : (
+               bestSellingPrograms.map((program) => (
+                 <ProgramCard 
+                   key={program.id} 
+                   program={program} 
+                   className="home-program-card" 
+                 />
+               ))
+             )}
+           </div>
           <Link to="/training-programs" className="home-view-all-button">
             View All Programs
           </Link>

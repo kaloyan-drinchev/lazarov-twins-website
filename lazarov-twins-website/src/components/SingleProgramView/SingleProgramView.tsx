@@ -5,12 +5,8 @@ import StarRating from "../StarRating/StarRating";
 import { useCart } from "../../contexts/CartContext";
 import Toast from "../Toast/Toast";
 import { calculateAverageRating, getTotalRatings, formatAverageRating } from "../../utils/ratingUtils";
+import { useTrainingProgram } from "../../hooks/useTrainingPrograms";
 import "./SingleProgramView.css";
-
-// @ts-ignore
-import trainingProgramsData from "../../data/trainingProgram";
-
-const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
 
 const SingleProgramView: React.FC = () => {
   const { id } = useParams();
@@ -18,10 +14,20 @@ const SingleProgramView: React.FC = () => {
   const { addToCart } = useCart();
   const [isAdding, setIsAdding] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const program = trainingPrograms.find(program => String(program.id) === String(id));
+  
+  // Fetch single program from PostgreSQL
+  const { program, loading, error } = useTrainingProgram(id || '');
+  
+  if (loading) {
+    return <div style={{ textAlign: 'center', padding: '2rem' }}>Loading program...</div>;
+  }
+  
+  if (error) {
+    return <div style={{ textAlign: 'center', padding: '2rem' }}>Error: {error}</div>;
+  }
   
   if (!program) {
-    return <div>Program not found</div>;
+    return <div style={{ textAlign: 'center', padding: '2rem' }}>Program not found</div>;
   }
 
   // Calculate rating metrics

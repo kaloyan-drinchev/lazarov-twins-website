@@ -6,9 +6,7 @@ import SingleProgramView from './components/SingleProgramView/SingleProgramView'
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import OrderSuccess from './components/OrderSuccess/OrderSuccess';
-// @ts-ignore
-import trainingProgramsData from './data/trainingProgram';
-import type { TrainingProgram } from './types';
+import { useTrainingPrograms } from './hooks/useTrainingPrograms';
 
 const Home = lazy(() => import('./components/Home/Home'));
 const About = lazy(() => import('./components/About/About'));
@@ -42,7 +40,7 @@ const TITLES: Record<string, string> = {
 
 export default function App() {
   const location = useLocation();
-  const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
+  const { programs: trainingPrograms } = useTrainingPrograms();
 
   useEffect(() => {
     // Check if it's a single program view route
@@ -55,7 +53,7 @@ export default function App() {
     } else {
       document.title = TITLES[location.pathname] || 'L-Twins | Not Found';
     }
-  }, [location.pathname]);
+  }, [location.pathname, trainingPrograms]);
 
   return (
     <Suspense fallback={<div>Loading…</div>}>

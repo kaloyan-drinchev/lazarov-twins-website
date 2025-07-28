@@ -5,11 +5,8 @@ import logo from "../../assets/Dynamic 'L-Twins' Fitness Logo (1).png";
 import searchIcon from '../../assets/search-interface-symbol.png';
 import bagIcon from '../../assets/icons8-paper-bag-50.png';
 import { useCart } from '../../contexts/CartContext';
+import { useTrainingPrograms } from '../../hooks/useTrainingPrograms';
 import './NavBar.css';
-import type { TrainingProgram } from '../../types';
-import trainingProgramsData from "../../data/trainingProgram.js";
-
-const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -29,6 +26,9 @@ const NavBar: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const { getCartItemCount } = useCart();
   const navigate = useNavigate();
+  
+  // Fetch training programs for search functionality
+  const { programs: trainingPrograms } = useTrainingPrograms();
   
   useEffect(() => {
     const nav = document.querySelector('nav.navbar');

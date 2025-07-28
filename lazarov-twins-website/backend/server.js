@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const { testConnection } = require('./database');
 
 const app = express();
 
@@ -9,6 +10,12 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+
+// Import routes
+const programRoutes = require('./routes/programs');
+
+// Use routes
+app.use('/api/programs', programRoutes);
 
 // Test endpoint
 app.get('/api/test', (req, res) => {
@@ -102,10 +109,13 @@ app.get('/api/checkout-session/:sessionId', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log('🚀 L-Twins Backend Server Started!');
   console.log(`📡 Server running on: http://localhost:${PORT}`);
   console.log(`🧪 Test endpoint: http://localhost:${PORT}/api/test`);
+  
+  // Test database connection
+  await testConnection();
   
   // Check Stripe configuration
   const stripeKey = process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_TEST_KEY_HERE';

@@ -5,10 +5,7 @@ import filterIcon from "../../assets/icons8-filter-50.png";
 import arrowDownIcon from "../../assets/icons8-chevron-down-24.png";
 import ProgramCard from "../ProgramCard/ProgramCard";
 import type { TrainingProgram } from "../../types";
-// @ts-ignorex
-import trainingProgramsData from "../../data/trainingProgram";
-
-const trainingPrograms: TrainingProgram[] = trainingProgramsData as TrainingProgram[];
+import { useTrainingPrograms } from "../../hooks/useTrainingPrograms";
 
 const experienceLevels = ["beginner", "intermediate", "advanced"];
 const goals = ["gain muscle", "gain strength", "both"];
@@ -28,6 +25,9 @@ const TrainingPrograms: React.FC = () => {
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [showMobileSort, setShowMobileSort] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
+  
+  // Fetch training programs from PostgreSQL
+  const { programs: trainingPrograms, loading, error } = useTrainingPrograms();
 
   useEffect(() => {
     // Listen for custom events dispatched by the NavBar when menu opens/closes
@@ -183,7 +183,7 @@ const TrainingPrograms: React.FC = () => {
             </button>
           </div>
         </div>
-        {trainingPrograms.find(program => program.new) && (
+        {!loading && trainingPrograms.find(program => program.new) && (
           <div className="header-featured-image-wrapper">
             <div className="header-featured-image-center">
               <img
@@ -263,9 +263,19 @@ const TrainingPrograms: React.FC = () => {
           className="training-programs-container"
           key={selectedExperience + selectedGoal + selectedSort + search}
         >
-          {filteredPrograms.map((program: TrainingProgram) => (
-            <ProgramCard key={program.id} program={program} />
-          ))}
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '2rem' }}>
+              <p>Loading...</p>
+            </div>
+          ) : error ? (
+            <div style={{ textAlign: 'center', padding: '2rem' }}>
+              <p>Error loading programs: {error}</p>
+            </div>
+          ) : (
+            filteredPrograms.map((program: TrainingProgram) => (
+              <ProgramCard key={program.id} program={program} />
+            ))
+          )}
         </div>
       </div>
     </div>
