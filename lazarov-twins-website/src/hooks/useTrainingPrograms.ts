@@ -17,17 +17,18 @@ export const useTrainingPrograms = (): UseTrainingProgramsReturn => {
     try {
       setLoading(true);
       setError(null);
-      
-      const response = await fetch('http://localhost:3001/api/programs');
-      
+
+      const response = await fetch('/api/programs');
+
       if (!response.ok) {
         throw new Error(`Failed to fetch programs: ${response.status}`);
       }
-      
+
       const data = await response.json();
       setPrograms(data);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch programs';
+      const errorMessage =
+        err instanceof Error ? err.message : 'Failed to fetch programs';
       setError(errorMessage);
       console.error('Error fetching training programs:', err);
     } finally {
@@ -43,12 +44,14 @@ export const useTrainingPrograms = (): UseTrainingProgramsReturn => {
     programs,
     loading,
     error,
-    refetch: fetchPrograms
+    refetch: fetchPrograms,
   };
 };
 
 // Hook for fetching a single program by ID
-export const useTrainingProgram = (id: string | number): {
+export const useTrainingProgram = (
+  id: string | number
+): {
   program: TrainingProgram | null;
   loading: boolean;
   error: string | null;
@@ -62,17 +65,18 @@ export const useTrainingProgram = (id: string | number): {
       try {
         setLoading(true);
         setError(null);
-        
-        const response = await fetch(`http://localhost:3001/api/programs/${id}`);
-        
+
+        const response = await fetch(`/api/programs/${id}`);
+
         if (!response.ok) {
           throw new Error(`Program not found: ${response.status}`);
         }
-        
+
         const data = await response.json();
         setProgram(data);
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Failed to fetch program';
+        const errorMessage =
+          err instanceof Error ? err.message : 'Failed to fetch program';
         setError(errorMessage);
         console.error('Error fetching training program:', err);
       } finally {
@@ -86,4 +90,4 @@ export const useTrainingProgram = (id: string | number): {
   }, [id]);
 
   return { program, loading, error };
-}; 
+};

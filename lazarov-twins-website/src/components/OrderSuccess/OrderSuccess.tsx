@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../../contexts/CartContext';
@@ -36,7 +37,7 @@ const OrderSuccess: React.FC = () => {
           if (response.ok) {
             const session = await response.json();
             setSessionData(session);
-            
+
             // Clear cart after successful payment
             clearCart();
           } else {
@@ -54,25 +55,27 @@ const OrderSuccess: React.FC = () => {
 
   const handleDownload = (programTitle: string) => {
     // In a real implementation, this would start the actual download
-    alert(`Downloading: ${programTitle}\n\nIn a real app, this would start the download or redirect to a secure download page.`);
+    alert(
+      `Downloading: ${programTitle}\n\nIn a real app, this would start the download or redirect to a secure download page.`
+    );
   };
 
   const getOrderItems = () => {
     if (orderData?.items) {
       return orderData.items;
     }
-    
+
     // Mock items if we don't have order data but have session
     if (sessionData) {
       return [
-        { 
-          id: 1, 
+        {
+          id: 1,
           title: 'Premium Training Program',
-          price: sessionData.amount_total / 100 // Convert from cents
-        }
+          price: sessionData.amount_total / 100, // Convert from cents
+        },
       ];
     }
-    
+
     return [];
   };
 
@@ -99,7 +102,8 @@ const OrderSuccess: React.FC = () => {
           </div>
           <h1>Payment Successful!</h1>
           <p className="success-message">
-            Thank you for your purchase. Your order has been confirmed and you'll receive an email confirmation shortly.
+            Thank you for your purchase. Your order has been confirmed and
+            you'll receive an email confirmation shortly.
           </p>
         </div>
 
@@ -114,25 +118,32 @@ const OrderSuccess: React.FC = () => {
                   {sessionData?.id || orderData?.id || 'N/A'}
                 </span>
               </div>
-              
+
               <div className="detail-item">
                 <span className="detail-label">Email:</span>
                 <span className="detail-value">
-                  {sessionData?.customer_email || orderData?.billing?.email || 'N/A'}
+                  {sessionData?.customer_email ||
+                    orderData?.billing?.email ||
+                    'N/A'}
                 </span>
               </div>
-              
+
               <div className="detail-item">
                 <span className="detail-label">Amount Paid:</span>
                 <span className="detail-value">
-                  ${sessionData ? (sessionData.amount_total / 100).toFixed(2) : orderData?.total?.toFixed(2) || '0.00'}
+                  $
+                  {sessionData
+                    ? (sessionData.amount_total / 100).toFixed(2)
+                    : orderData?.total?.toFixed(2) || '0.00'}
                 </span>
               </div>
-              
+
               <div className="detail-item">
                 <span className="detail-label">Payment Status:</span>
                 <span className="detail-value status-paid">
-                  {sessionData?.payment_status || paymentResult?.status || 'Paid'}
+                  {sessionData?.payment_status ||
+                    paymentResult?.status ||
+                    'Paid'}
                 </span>
               </div>
 
@@ -140,8 +151,8 @@ const OrderSuccess: React.FC = () => {
                 <div className="detail-item">
                   <span className="detail-label">Billing Name:</span>
                   <span className="detail-value">
-                    {sessionData?.metadata?.customer_name || 
-                     `${orderData?.billing?.firstName} ${orderData?.billing?.lastName}`}
+                    {sessionData?.metadata?.customer_name ||
+                      `${orderData?.billing?.firstName} ${orderData?.billing?.lastName}`}
                   </span>
                 </div>
               )}
@@ -153,7 +164,7 @@ const OrderSuccess: React.FC = () => {
         <div className="download-section">
           <h2>Your Training Programs</h2>
           <p>Your digital content is ready for download:</p>
-          
+
           <div className="download-items">
             {getOrderItems().length > 0 ? (
               getOrderItems().map((item: any, index: number) => (
@@ -162,7 +173,7 @@ const OrderSuccess: React.FC = () => {
                     <h3>{item.title}</h3>
                     <p>Digital Training Program</p>
                   </div>
-                  <button 
+                  <button
                     className="download-btn"
                     onClick={() => handleDownload(item.title)}
                   >
@@ -178,7 +189,7 @@ const OrderSuccess: React.FC = () => {
                     <h3>Premium Training Program</h3>
                     <p>Digital Training Program</p>
                   </div>
-                  <button 
+                  <button
                     className="download-btn"
                     onClick={() => handleDownload('Premium Training Program')}
                   >
@@ -198,23 +209,31 @@ const OrderSuccess: React.FC = () => {
               <div className="step-number">1</div>
               <div className="step-content">
                 <h3>Check Your Email</h3>
-                <p>You'll receive a confirmation email with your receipt and download links.</p>
+                <p>
+                  You'll receive a confirmation email with your receipt and
+                  download links.
+                </p>
               </div>
             </div>
-            
+
             <div className="step">
               <div className="step-number">2</div>
               <div className="step-content">
                 <h3>Download Your Programs</h3>
-                <p>Access your training programs using the download buttons above.</p>
+                <p>
+                  Access your training programs using the download buttons
+                  above.
+                </p>
               </div>
             </div>
-            
+
             <div className="step">
               <div className="step-number">3</div>
               <div className="step-content">
                 <h3>Start Training</h3>
-                <p>Begin your fitness journey with your new training programs!</p>
+                <p>
+                  Begin your fitness journey with your new training programs!
+                </p>
               </div>
             </div>
           </div>
@@ -222,16 +241,13 @@ const OrderSuccess: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="success-actions">
-          <button 
-            onClick={() => navigate('/training-programs')} 
+          <button
+            onClick={() => navigate('/training-programs')}
             className="browse-more-btn"
           >
             Browse More Programs
           </button>
-          <button 
-            onClick={() => navigate('/')} 
-            className="home-btn"
-          >
+          <button onClick={() => navigate('/')} className="home-btn">
             Back to Home
           </button>
         </div>
@@ -240,4 +256,4 @@ const OrderSuccess: React.FC = () => {
   );
 };
 
-export default OrderSuccess; 
+export default OrderSuccess;

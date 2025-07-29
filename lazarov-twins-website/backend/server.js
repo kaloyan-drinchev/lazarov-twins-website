@@ -5,10 +5,19 @@ const { testConnection } = require('./database');
 
 const app = express();
 
-app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'], // Your Vite dev server
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'http://54.86.169.71',
+      'https://54.86.169.71',
+      'http://lazarovtwins.com',
+      'https://lazarovtwins.com',
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Import routes
@@ -30,15 +39,16 @@ app.post('/api/create-checkout-session', async (req, res) => {
     console.log('👤 Customer:', req.body.customer_email);
 
     // Check if we have Stripe secret key
-    const stripeSecretKey = process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_TEST_KEY_HERE';
-    
+    const stripeSecretKey =
+      process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_TEST_KEY_HERE';
+
     if (stripeSecretKey === 'sk_test_YOUR_TEST_KEY_HERE') {
       // Demo mode - no real Stripe key
       console.log('🎭 Demo mode: No Stripe key configured');
       const demoSession = {
         id: 'cs_demo_' + Math.random().toString(36).substring(7),
       };
-      
+
       setTimeout(() => {
         res.json(demoSession);
       }, 1000);
@@ -61,7 +71,6 @@ app.post('/api/create-checkout-session', async (req, res) => {
 
     console.log('🎉 Real Stripe session created:', session.id);
     res.json({ id: session.id, url: session.url });
-
   } catch (error) {
     console.error('❌ Error creating checkout session:', error);
     res.status(500).json({ error: error.message });
@@ -73,7 +82,7 @@ app.get('/api/checkout-session/:sessionId', async (req, res) => {
   try {
     const { sessionId } = req.params;
     console.log('📋 Retrieving session:', sessionId);
-    
+
     // Check if it's a demo session
     if (sessionId.startsWith('cs_demo_')) {
       const demoSession = {
@@ -83,16 +92,17 @@ app.get('/api/checkout-session/:sessionId', async (req, res) => {
         payment_status: 'paid',
         metadata: {
           customer_name: 'Demo Customer',
-          customer_address: '123 Demo Street'
-        }
+          customer_address: '123 Demo Street',
+        },
       };
       res.json(demoSession);
       return;
     }
 
     // Real Stripe session retrieval
-    const stripeSecretKey = process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_TEST_KEY_HERE';
-    
+    const stripeSecretKey =
+      process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_TEST_KEY_HERE';
+
     if (stripeSecretKey === 'sk_test_YOUR_TEST_KEY_HERE') {
       res.status(400).json({ error: 'Stripe not configured' });
       return;
@@ -100,7 +110,7 @@ app.get('/api/checkout-session/:sessionId', async (req, res) => {
 
     const stripe = require('stripe')(stripeSecretKey);
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-    
+
     res.json(session);
   } catch (error) {
     console.error('❌ Error retrieving session:', error);
@@ -109,29 +119,32 @@ app.get('/api/checkout-session/:sessionId', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, async () => {
+app.listen(PORT, '0.0.0.0', async () => {
   console.log('🚀 L-Twins Backend Server Started!');
   console.log(`📡 Server running on: http://localhost:${PORT}`);
   console.log(`🧪 Test endpoint: http://localhost:${PORT}/api/test`);
-  
+
   // Test database connection
   await testConnection();
-  
+
   // Check Stripe configuration
-  const stripeKey = process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_TEST_KEY_HERE';
+  const stripeKey =
+    process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_TEST_KEY_HERE';
   if (stripeKey === 'sk_test_YOUR_TEST_KEY_HERE') {
     console.log('🎭 Running in DEMO mode');
     console.log('💡 To enable real Stripe payments:');
-    console.log('   1. Create .env file with: STRIPE_SECRET_KEY=sk_test_your_key');
+    console.log(
+      '   1. Create .env file with: STRIPE_SECRET_KEY=sk_test_your_key'
+    );
     console.log('   2. Update frontend: src/utils/stripe.ts');
     console.log('   3. Restart both servers');
   } else {
     console.log('💳 Real Stripe integration enabled!');
   }
-  
+
   console.log('');
   console.log('Next steps:');
   console.log('1. Keep this server running');
   console.log('2. Start your frontend: npm run dev');
   console.log('3. Test the checkout flow!');
-}); 
+});

@@ -1,4 +1,4 @@
-import { RatingData } from '../utils/ratingUtils';
+import type { RatingData } from '../utils/ratingUtils';
 
 export interface TrainingProgram {
   id: number;
@@ -41,4 +41,4 @@ export interface CartContextType {
   clearCart: () => void;
   getCartTotal: () => number;
   getCartItemCount: () => number;
-} 
+}
