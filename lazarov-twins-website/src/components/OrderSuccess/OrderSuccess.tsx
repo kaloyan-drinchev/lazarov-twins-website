@@ -53,11 +53,54 @@ const OrderSuccess: React.FC = () => {
     fetchSessionData();
   }, [sessionId, clearCart]);
 
-  const handleDownload = (programTitle: string) => {
-    // In a real implementation, this would start the actual download
-    alert(
-      `Downloading: ${programTitle}\n\nIn a real app, this would start the download or redirect to a secure download page.`
-    );
+  const handleDownload = (programTitle: string, programId?: number) => {
+    // Map program titles/IDs to PDF filenames
+    const pdfMapping: { [key: string]: string } = {
+      "Beginner's Full-Body Foundation":
+        'program-1-beginner-s-full-body-foundation.html',
+      'Intermediate Strength Focus: Powerlifting Basics':
+        'program-2-intermediate-strength-focus--powerlifting-basics.html',
+      'Advanced Muscle Building: High Volume Training':
+        'program-3-advanced-muscle-building--high-volume-training.html',
+      'Beginner Strength & Size: Best of Both Worlds':
+        'program-4-beginner-strength---size--best-of-both-worlds.html',
+      'Intermediate Muscle Building: Progressive Overload Focus':
+        'program-5-intermediate-muscle-building--progressive-overload-focus.html',
+      'Advanced Powerlifting: Competition Prep':
+        'program-6-advanced-powerlifting--competition-prep.html',
+      'Intermediate Strength & Muscle: Dual Phase Training':
+        'program-7-intermediate-strength---muscle--dual-phase-training.html',
+      'Advanced Functional Strength & Aesthetics':
+        'program-8-advanced-functional-strength---aesthetics.html',
+      'Beginner Muscle Building: Volume & Consistency':
+        'program-9-beginner-muscle-building--volume---consistency.html',
+      'Starting Strength: The Foundational Program':
+        'program-10-starting-strength--the-foundational-program.html',
+    };
+
+    // Get PDF filename
+    let pdfFileName = pdfMapping[programTitle];
+
+    // Fallback: if we have program ID, construct filename
+    if (!pdfFileName && programId) {
+      pdfFileName = `program-${programId}-${programTitle
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '-')}.html`;
+    }
+
+    if (pdfFileName) {
+      // Create download link
+      const pdfUrl = `/pdfs/${pdfFileName}`;
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.download = `${programTitle}.html`;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      alert(`PDF not found for: ${programTitle}`);
+    }
   };
 
   const getOrderItems = () => {

@@ -11,6 +11,7 @@ export interface TrainingProgram {
   ratings: RatingData;
   new: boolean;
   salesCount: number;
+  pdfUrl?: string;
 }
 
 export interface ProgramCardProps {
