@@ -51,7 +51,7 @@ const OrderSuccess: React.FC = () => {
     };
 
     fetchSessionData();
-  }, [sessionId, clearCart]);
+  }, [sessionId]);
 
   const handleDownload = (programTitle: string, programId?: number) => {
     // Map program titles/IDs to PDF filenames
