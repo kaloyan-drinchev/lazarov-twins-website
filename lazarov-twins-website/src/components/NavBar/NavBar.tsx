@@ -14,9 +14,9 @@ const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
   { to: '/training-programs', label: 'Training Programs' },
+  { to: '/blog', label: 'Blog' },
   { to: '/nutrition-plan', label: 'Nutrition Plan' },
   { to: '/muscle-ladder', label: 'The Muscle Ladder' },
-  { to: '/blog', label: 'Blog' },
   { to: '/contact', label: 'Contact' },
 ];
 

@@ -85,7 +85,7 @@
 .price {
   font-size: 1.5rem !important;
   font-weight: 700 !important;
-  color: #28a745 !important;
+  color: #007bff !important;
   margin: 1.5rem 0 !important;
 }
 
@@ -97,7 +97,7 @@
 
 /* Add to Cart Button */
 .add-to-cart-btn {
-  background: linear-gradient(135deg, #28a745, #20c997);
+  background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -114,13 +114,13 @@
   min-height: 50px;
   width: 100%;
   max-width: 300px;
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
 .add-to-cart-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #218838, #1ea574);
+  background: linear-gradient(135deg, #0056b3, #004085);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
 }
 
 .add-to-cart-btn:disabled {
@@ -130,7 +130,7 @@
 }
 
 .add-to-cart-btn.adding {
-  background: linear-gradient(135deg, #20c997, #17a2b8);
+  background: linear-gradient(135deg, #6c757d, #495057);
   animation: pulse 0.5s ease-in-out;
 }
 
@@ -244,5 +244,537 @@
   .add-to-cart-btn {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
+  }
+}
+
+/* New Program Sections */
+.program-section {
+  margin: 3rem 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.section-subtitle {
+  color: #666;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Week Breakdown Styles */
+.weeks-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.week-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.week-card:hover {
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+}
+
+.week-card.active {
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+.week-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  transition: background 0.3s ease;
+}
+
+.week-card.active .week-header {
+  background: #e7f3ff;
+}
+
+.week-number {
+  background: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.week-title {
+  flex: 1;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.week-toggle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #007bff;
+  width: 30px;
+  text-align: center;
+}
+
+.week-details {
+  padding: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+  }
+}
+
+.week-description {
+  margin-bottom: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.week-focus h5 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.week-focus ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.week-focus li {
+  margin-bottom: 0.3rem;
+  color: #666;
+}
+
+/* Testimonials Styles */
+.testimonials-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  overflow: hidden;
+  padding: 3rem 2rem; /* Added more padding for prominence */
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem; /* Increased gap between cards */
+  width: 100%;
+  max-width: 100%;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 16px; /* Slightly more rounded */
+  padding: 2.5rem; /* Increased padding */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12); /* Enhanced shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.transformation-images {
+  width: 100%;
+  padding-bottom: 15px; /* More space for labels */
+}
+
+.before-after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem; /* Increased gap between images */
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: nowrap;
+}
+
+.image-container {
+  position: relative;
+  text-align: center;
+  flex: 1;
+  max-width: calc(50% - 1rem);
+  margin-bottom: 20px; /* Space for the label */
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 150px; /* Significantly larger images */
+  height: 180px; /* Taller images */
+  object-fit: cover;
+  border-radius: 12px; /* More rounded corners */
+  border: 3px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Added shadow to images */
+}
+
+.image-label {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.transformation-arrow {
+  font-size: 1.5rem; /* Larger arrow */
+  color: #007bff;
+  font-weight: bold;
+  flex-shrink: 0;
+  width: 30px; /* Wider space */
+  text-align: center;
+}
+
+.testimonial-header {
+  margin-bottom: 1rem;
+}
+
+.testimonial-header h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem; /* Larger name */
+  font-weight: 700; /* Bolder */
+  color: #333;
+}
+
+.age-timeframe {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.testimonial-quote {
+  font-style: italic;
+  color: #555;
+  margin: 1.5rem 0; /* More spacing */
+  padding: 1.5rem; /* More padding */
+  background: #f8f9fa;
+  border-left: 4px solid #007bff;
+  border-radius: 8px; /* More rounded */
+  line-height: 1.7; /* Better readability */
+  font-size: 1.05rem; /* Slightly larger text */
+}
+
+.testimonial-results h5 {
+  margin: 1rem 0 0.5rem 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.testimonial-results ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.testimonial-results li {
+  margin-bottom: 0.3rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Pricing Section Styles */
+.pricing-section {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+}
+
+.pricing-section .section-title,
+.pricing-section .section-subtitle {
+  color: white;
+}
+
+.pricing-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pricing-subtitle {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.pricing-card {
+  background: white;
+  color: #333;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.price-display {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.currency {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #666;
+  vertical-align: top;
+}
+
+.price-amount {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #007bff;
+  margin: 0 0.2rem;
+}
+
+.price-period {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.pricing-features h4 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.pricing-features ul {
+  margin: 0 0 2rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pricing-features li {
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+  color: #555;
+  padding-left: 0;
+}
+
+.pricing-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+.pricing-cta-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.pricing-cta-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0056b3, #004085);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.pricing-cta-btn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pricing-cta-btn.adding {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  animation: pulse 0.5s ease-in-out;
+}
+
+.guarantee-text {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Tablet Responsive */
+@media (min-width: 768px) {
+  .program-section {
+    padding: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .weeks-breakdown {
+    gap: 1.5rem;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem; /* Increased gap for tablets */
+  }
+
+  .before-after {
+    gap: 2rem; /* Increased gap between images */
+  }
+
+  .image-container img {
+    max-width: 180px; /* Much larger on tablets */
+    height: 210px; /* Taller for better visibility */
+  }
+
+  .transformation-arrow {
+    font-size: 2rem; /* Larger arrow */
+    width: 40px; /* More space */
+  }
+
+  .pricing-stats {
+    gap: 2rem;
+  }
+}
+
+/* Desktop Responsive */
+@media (min-width: 1024px) {
+  .program-section {
+    margin: 4rem 0;
+    padding: 4rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr); /* Keep 2 columns for better image size */
+    gap: 4rem; /* Large gap for desktop */
+  }
+
+  .image-container {
+    margin-bottom: 25px; /* More space for larger screens */
+  }
+
+  .image-container img {
+    max-width: 220px; /* Very large on desktop */
+    height: 250px; /* Much taller for premium viewing */
+  }
+
+  .transformation-arrow {
+    font-size: 2.5rem; /* Large arrow for desktop */
+    width: 50px; /* Ample space */
+  }
+
+  .week-header {
+    padding: 2rem;
+  }
+
+  .week-details {
+    padding: 2rem;
+  }
+
+  .pricing-container {
+    max-width: 700px;
+  }
+
+  .price-amount {
+    font-size: 4rem;
+  }
+}
+
+/* Small Mobile Specific Fixes */
+@media (max-width: 480px) {
+  .program-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+  }
+
+  .testimonials-grid {
+    gap: 1.5rem;
+  }
+
+  .before-after {
+    gap: 1rem; /* Increased gap on mobile */
+  }
+
+  .image-container {
+    max-width: calc(50% - 0.5rem);
+    margin-bottom: 15px; /* Smaller space for mobile */
+  }
+
+  .image-container img {
+    max-width: 110px; /* Larger on mobile too */
+    height: 140px; /* Better visibility */
+  }
+
+  .transformation-arrow {
+    font-size: 1.3rem; /* Larger mobile arrow */
+    width: 25px; /* More space */
+  }
+
+  .image-label {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
   }
 }
